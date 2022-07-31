@@ -1,6 +1,5 @@
 package com.crud.minerals.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,27 +14,27 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByColor",
-                query = "FROM Mineral WHERE name = :COLOR"
+                query = "FROM Mineral WHERE color = :COLOR"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByShine",
-                query = "FROM Mineral WHERE name = :SHINE"
+                query = "FROM Mineral WHERE shine = :SHINE"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByTransparency",
-                query = "FROM Mineral WHERE name = :TRANSPARENCY"
+                query = "FROM Mineral WHERE transparency = :TRANSPARENCY"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByFragility",
-                query = "FROM Mineral WHERE name = :FRAGILITY"
+                query = "FROM Mineral WHERE fragility = :FRAGILITY"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByOpalescence",
-                query = "FROM Mineral WHERE name = :OPALESCENCE"
+                query = "FROM Mineral WHERE opalescence = :OPALESCENCE"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByRegion",
-                query = "FROM Mineral WHERE name = :REGION"
+                query = "FROM Mineral WHERE region = :REGION"
         ),
 })
 
