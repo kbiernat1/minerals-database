@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/base/adminpanel")
+@RequestMapping("/adminPanel")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AdminController {
 
     private final MineralMapper mineralMapper;
@@ -40,14 +41,14 @@ public class AdminController {
     }
 
     @PutMapping
-    public ResponseEntity<MineralDto> updateMineral (@RequestBody MineralDto mineralDto) {
+    public ResponseEntity<MineralDto> updateMineral(@RequestBody MineralDto mineralDto) {
         Mineral mineral = mineralMapper.mapToMineral(mineralDto);
         Mineral savedMineral = dbService.saveMineral(mineral);
         return ResponseEntity.ok(mineralMapper.mapToMineralDto(savedMineral));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createMineral (@RequestBody MineralDto mineralDto) {
+    public ResponseEntity<Void> createMineral(@RequestBody MineralDto mineralDto) {
         Mineral mineral = mineralMapper.mapToMineral(mineralDto);
         dbService.saveMineral(mineral);
         return ResponseEntity.ok().build();
