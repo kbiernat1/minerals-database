@@ -7,11 +7,12 @@ import com.crud.minerals.service.DbService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/adminPanel")
 @RequiredArgsConstructor
 @CrossOrigin("*")
@@ -21,6 +22,11 @@ public class AdminController {
     private final DbService dbService;
 
     @GetMapping
+    public String welcome() {
+        return "adminPanel";
+    }
+
+    @GetMapping("/minerals")
     public List<MineralDto> getMinerals () {
         List<Mineral> minerals = dbService.getAllMinerals();
         return mineralMapper.mineralToDtoList(minerals);

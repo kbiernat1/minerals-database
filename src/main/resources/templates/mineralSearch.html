@@ -1,8 +1,59 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to search panel.</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Minerals Search Engine</title>
+    <link rel="stylesheet" href="mineralSearchCss.css">
 </head>
 <body>
-</body>
-</html>
+<h1>Minerals Search Engine</h1>
+
+<main>
+    <section>
+        <h2>Search for a mineral</h2>
+        <form th:action="@{'/mineralSearch'}" method="POST">
+            <fieldset>
+                <label>Mineral name</label>
+                <input type="text" id="inputName" th:name="name" name="name" placeholder="Insert a mineral name" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral color</label>
+                <input type="text" th:name="color" placeholder="Insert mineral color" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral shine</label>
+                <input type="text" th:name="shine" placeholder="Insert mineral shine" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral transparency</label>
+                <input type="text" th:name="transparency" placeholder="Insert mineral transparency" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral fragility</label>
+                <input type="text" th:name="fragility" placeholder="Insert mineral fragility" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral opalescence</label>
+                <input type="text" th:name="opalescence" placeholder="Does it opalesce?" maxlength="1">
+            </fieldset>
+
+            <fieldset>
+                <label>Mineral region</label>
+                <input type="text" th:name="region" placeholder="Insert region where mineral has been found" minlength="3">
+            </fieldset>
+
+            <fieldset>
+                <input type="submit"></input>
+            </fieldset>
+        </form>
+    </section>
+    <section>
+        <h2>Minerals in database</h2>
+        <div th:each="mineral: ${minerals}"><p th:text="${mineral}"></p></div>
+    </section>
+</main>

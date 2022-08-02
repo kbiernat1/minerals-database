@@ -6,27 +6,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
 @NamedQueries({
         @NamedQuery(
                 name = "Mineral.retrieveByName",
-                query = "FROM Mineral WHERE name = :NAME"
+                query = "FROM Mineral WHERE name LIKE CONCAT('%', :NAME, '%')"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByColor",
-                query = "FROM Mineral WHERE color = :COLOR"
+                query = "FROM Mineral WHERE color LIKE CONCAT('%', :COLOR, '%')"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByShine",
-                query = "FROM Mineral WHERE shine = :SHINE"
+                query = "FROM Mineral WHERE shine LIKE CONCAT('%', :SHINE, '%')"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByTransparency",
-                query = "FROM Mineral WHERE transparency = :TRANSPARENCY"
+                query = "FROM Mineral WHERE transparency LIKE CONCAT('%', :TRANSPARENCY, '%')"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByFragility",
-                query = "FROM Mineral WHERE fragility = :FRAGILITY"
+                query = "FROM Mineral WHERE fragility LIKE CONCAT('%', :FRAGILITY, '%')"
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByOpalescence",
@@ -34,8 +33,14 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = "Mineral.retrieveByRegion",
-                query = "FROM Mineral WHERE region = :REGION"
+                query = "FROM Mineral WHERE region LIKE CONCAT('%', :REGION, '%')"
         ),
+        @NamedQuery(
+                name = "Mineral.retrieveByDifferentParameters",
+                query = "FROM Mineral WHERE name LIKE CONCAT('%', :name, '%') OR color LIKE CONCAT('%', :color, '%') OR shine LIKE CONCAT('%', :shine, '%') OR " +
+                        "transparency LIKE CONCAT('%', :transparency, '%') OR fragility LIKE CONCAT('%', :fragility, '%') OR opalescence = :opalescence OR " +
+                        "region LIKE CONCAT('%', :region, '%')"
+        )
 })
 
 @Getter
@@ -69,5 +74,11 @@ public class Mineral {
 
     @Column(name = "region")
     private String region;
+
+    @Override
+    public String toString() {
+        return "name: " + name + ", color: " + color + ", shine level: " + shine + ", transparency level: " + transparency + ", fragility level: " + fragility
+                + ", is opalescent: " + opalescence + ", region (PL): " + region;
+    }
 }
 

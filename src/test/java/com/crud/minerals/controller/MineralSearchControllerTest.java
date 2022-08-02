@@ -34,6 +34,6 @@ public class MineralSearchControllerTest {
 
         //then
         Assertions.assertEquals(2, mineralsByColorGreen.size());
-        mineralsRepository.deleteAll();
+        //mineralsRepository.deleteAll();
     }
 }

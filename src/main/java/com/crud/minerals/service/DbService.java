@@ -56,4 +56,9 @@ public class DbService {
     public List<Mineral> retrieveMineralsByRegion(String region) {
         return repository.retrieveByRegion(region);
     }
+
+    public List<Mineral> retrieveByDifferentParameters(String name, String color, String shine, String fragility, String transparency,
+                                                       Character opalescence, String region) {
+        return repository.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
+    }
 }
