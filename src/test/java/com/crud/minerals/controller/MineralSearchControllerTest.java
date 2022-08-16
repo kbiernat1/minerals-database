@@ -21,6 +21,7 @@ public class MineralSearchControllerTest {
     @Test
     void retrieveMineralByColorTest() {
         //given
+        mineralsRepository.deleteAll();
         Mineral mineral1 = new Mineral(2L, "testname1", "green", "high", "high", "medium", 'N', "somewhere");
         Mineral mineral2 = new Mineral(3L, "testname2", "green", "medium", "low", "low", 'Y', "somewhere");
         Mineral mineral3 = new Mineral(4L, "testname3", "blue", "low", "medium", "low", 'N', "somewhere");
@@ -34,7 +35,6 @@ public class MineralSearchControllerTest {
 
         //then
         Assertions.assertEquals(2, mineralsByColorGreen.size());
-        //mineralsRepository.deleteAll();
     }
 
     @Test
