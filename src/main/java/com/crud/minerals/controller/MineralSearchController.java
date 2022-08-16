@@ -5,6 +5,7 @@ import com.crud.minerals.domain.MineralDto;
 import com.crud.minerals.mapper.MineralMapper;
 import com.crud.minerals.service.DbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,55 +32,71 @@ public class MineralSearchController {
         return ResponseEntity.ok(mineralMapper.mapToMineralDto(dbService.getMineral(id)));
     }
 
-    @PostMapping
+    @PostMapping()
     public String getMineralsByDifferentParameters(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "color", required = false) String color,
                                                              @RequestParam(name = "shine", required = false) String shine, @RequestParam(name = "fragility", required = false) String fragility,
                                                              @RequestParam(name = "transparency", required = false) String transparency, @RequestParam(name = "opalescence", required = false)
                                                                          Character opalescence, @RequestParam(name = "region", required = false) String region, Model model) {
+
         List<Mineral> minerals = dbService.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
         model.addAttribute("minerals", minerals);
         return "mineralSearch";
     }
 
+    /*@PostMapping()
+    public String getMineralsByDifferentParameters(@RequestBody Mineral mineral, Model model) {
+        List<Mineral> minerals = dbService.retrieveByDifferentParameters(mineral.getName(), mineral.getColor(), mineral.getShine(), mineral.getFragility(),
+                mineral.getTransparency(), mineral.getOpalescence(), mineral.getRegion());
+        mineralMapper.mineralToDtoList(minerals);
+        model.addAttribute("minerals", minerals);
+        return "mineralSearch";
+    }*/
+
     @GetMapping("/name")
-    public List<MineralDto> getMineralsByName (@RequestParam(name = "name", required = true) String name, Model model) {
-        model.addAttribute(name);
+    @ResponseBody
+    public List<MineralDto> getMineralsByName (@RequestParam(name = "name") String name) {
         List<Mineral> minerals = dbService.retrieveMineralsByName(name);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/color")
-    public List<MineralDto> getMineralsByColor (@RequestParam(name = "color", required = true) String color) {
+    @ResponseBody
+    public List<MineralDto> getMineralsByColor (@RequestParam(name = "color") String color) {
         List<Mineral> minerals = dbService.retrieveMineralsByColor(color);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/shine")
-    public List<MineralDto> getMineralsByShine (@RequestParam(name = "shine", required = true) String shine) {
+    @ResponseBody
+    public List<MineralDto> getMineralsByShine (@RequestParam(name = "shine") String shine) {
         List<Mineral> minerals = dbService.retrieveMineralsByShine(shine);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/frag")
+    @ResponseBody
     public List<MineralDto> getMineralsByFragility (@RequestParam(name = "fragility", required = true) String fragility) {
         List<Mineral> minerals = dbService.retrieveMineralsByFragility(fragility);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/transp")
-    public List<MineralDto> getMineralsByTransparency (@RequestParam(name = "transparency", required = true) String transparency) {
+    @ResponseBody
+    public List<MineralDto> getMineralsByTransparency (@RequestParam(name = "transparency") String transparency) {
         List<Mineral> minerals = dbService.retrieveMineralsByTransparency(transparency);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/opal")
-    public List<MineralDto> getMineralsByOpalescence (@RequestParam(name = "opalescence", required = true) char opalescence) {
+    @ResponseBody
+    public List<MineralDto> getMineralsByOpalescence (@RequestParam(name = "opalescence") char opalescence) {
         List<Mineral> minerals = dbService.retrieveMineralsByOpalescence(opalescence);
         return mineralMapper.mineralToDtoList(minerals);
     }
 
     @GetMapping("/region")
-    public List<MineralDto> getMineralsByRegion (@RequestParam(name = "region", required = true) String region) {
+    @ResponseBody
+    public List<MineralDto> getMineralsByRegion (@RequestParam(name = "region") String region) {
         List<Mineral> minerals = dbService.retrieveMineralsByRegion(region);
         return mineralMapper.mineralToDtoList(minerals);
     }

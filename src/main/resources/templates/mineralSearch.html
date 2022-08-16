@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Minerals Search Engine</title>
     <link rel="stylesheet" href="mineralSearchCss.css">
+    <script src="mineralSearchJs.js"></script>
 </head>
 <body>
 <h1>Minerals Search Engine</h1>
@@ -44,16 +45,16 @@
 
             <fieldset>
                 <label>Mineral region</label>
-                <input type="text" th:name="region" placeholder="Insert region where mineral has been found" minlength="3">
+                <input type="text" th:name="region" placeholder="Insert region where mineral was found" minlength="3">
             </fieldset>
 
             <fieldset>
-                <input type="submit"></input>
+                <input type="submit">
             </fieldset>
         </form>
     </section>
     <section>
         <h2>Minerals in database</h2>
-        <div th:each="mineral: ${minerals}"><p th:text="${mineral}"></p></div>
+        <div th:each="mineral : ${minerals}"><p th:text="${mineral}"></p></div>
     </section>
 </main>

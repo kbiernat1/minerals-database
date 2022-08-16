@@ -36,4 +36,11 @@ public class MineralSearchControllerTest {
         Assertions.assertEquals(2, mineralsByColorGreen.size());
         //mineralsRepository.deleteAll();
     }
+
+    @Test
+    void getMineralsByDifferentParametersTest() {
+        List<Mineral> minerals = dbService.retrieveByDifferentParameters(null, "green", "high", "medium", null, null, null);
+
+        Assertions.assertEquals(3, minerals.size());
+    }
 }

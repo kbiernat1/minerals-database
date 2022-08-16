@@ -34,14 +34,20 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "Mineral.retrieveByRegion",
                 query = "FROM Mineral WHERE region LIKE CONCAT('%', :REGION, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByDifferentParameters",
-                query = "FROM Mineral WHERE name LIKE CONCAT('%', :name, '%') OR color LIKE CONCAT('%', :color, '%') OR shine LIKE CONCAT('%', :shine, '%') OR " +
-                        "transparency LIKE CONCAT('%', :transparency, '%') OR fragility LIKE CONCAT('%', :fragility, '%') OR opalescence = :opalescence OR " +
-                        "region LIKE CONCAT('%', :region, '%')"
         )
 })
+
+@NamedNativeQuery(
+        name = "Mineral.retrieveByDifferentParameters",
+        query = "SELECT * FROM minerals WHERE IFNULL(:name, name) = IFNULL(name, name) AND " +
+                "IFNULL(:color, color) = IFNULL(color, color) AND " +
+                "IFNULL(:shine, shine) = IFNULL(shine, shine) AND " +
+                "IFNULL(:transparency, transparency) = IFNULL(transparency, transparency) AND " +
+                "IFNULL(:fragility, fragility) = IFNULL(fragility, fragility) AND " +
+                "IFNULL(:opalescence, opalescence) = IFNULL(opalescence, opalescence) AND " +
+                "IFNULL(:region, region) = IFNULL(region, region);",
+        resultClass = Mineral.class
+)
 
 @Getter
 @AllArgsConstructor

@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.NamedNativeQuery;
+import java.lang.annotation.Native;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,8 +42,8 @@ public interface MineralsRepository extends CrudRepository<Mineral, Long> {
     @Query
     List<Mineral> retrieveByRegion(@Param("REGION") String region);
 
-    @Query
-    List<Mineral> retrieveByDifferentParameters(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "COLOR", required = false) String color,
+    @Query(nativeQuery = true)
+    List<Mineral> retrieveByDifferentParameters(@RequestParam(value = "NAME", required = false) String name, @RequestParam(value = "COLOR", required = false) String color,
                                                 @RequestParam(value = "SHINE", required = false) String shine, @RequestParam(value = "FRAGILITY", required = false) String fragility,
                                                 @RequestParam(value = "TRANSPARENCY", required = false) String transparency, @RequestParam(value = "OPALESCENCE", required = false)
                                                         Character opalescence, @RequestParam(value = "REGION", required = false) String region);
