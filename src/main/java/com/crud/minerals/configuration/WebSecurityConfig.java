@@ -2,8 +2,8 @@ package com.crud.minerals.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -17,11 +17,21 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/")
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**")
+                .antMatchers("/mineralSearch")
+                .antMatchers("/mineralSearch/**");
+    }
+
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/mineralSearch/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/adminPanel").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -41,7 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .password("123")
                         .roles("ADMIN")
                         .build();
-
         return new InMemoryUserDetailsManager(user);
     }
 }
