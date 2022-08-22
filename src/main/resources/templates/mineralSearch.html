@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Minerals Search Engine</title>
-    <link rel="stylesheet" type="css" href="mineralSearchCss.css" />
-    <script src="mineralSearchJs.js" type="text/javascript"></script>
-    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/mineralSearchCss.css" />
+    <script src="/mineralSearchJs.js" type="text/javascript"></script>
+    <script src="/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
 <h1>Minerals Search Engine</h1>
@@ -12,7 +13,7 @@
 <main>
     <section>
         <h2>Search for a mineral</h2>
-        <form th:action="@{'/mineralSearch'}" method="POST">
+        <form name="searchForm" th:action="@{'/mineralSearch'}" method="POST">
             <fieldset>
                 <label>Mineral name</label>
                 <input type="text" id="inputName" th:name="name" name="name" placeholder="Insert a mineral name" minlength="3">
@@ -20,36 +21,40 @@
 
             <fieldset>
                 <label>Mineral color</label>
-                <input type="text" id="color" th:name="color" placeholder="Insert mineral color" minlength="3">
+                <input type="text" id="color" th:name="color" name="color" placeholder="Insert mineral color" minlength="3">
             </fieldset>
 
             <fieldset>
                 <label>Mineral shine</label>
-                <input type="text" id="shine" th:name="shine" placeholder="Insert mineral shine" minlength="3">
+                <input type="text" id="shine" th:name="shine" name="shine" placeholder="Insert mineral shine" minlength="3">
             </fieldset>
 
             <fieldset>
                 <label>Mineral transparency</label>
-                <input type="text" id="transparency" th:name="transparency" placeholder="Insert mineral transparency" minlength="3">
+                <input type="text" id="transparency" th:name="transparency" name="transparency" placeholder="Insert mineral transparency" minlength="3">
             </fieldset>
 
             <fieldset>
                 <label>Mineral fragility</label>
-                <input type="text" id="fragility" th:name="fragility" placeholder="Insert mineral fragility" minlength="3">
+                <input type="text" id="fragility" th:name="fragility" name="fragility" placeholder="Insert mineral fragility" minlength="3">
             </fieldset>
 
             <fieldset>
                 <label>Mineral opalescence</label>
-                <input type="text" id="opalescence" th:name="opalescence" placeholder="Does it opalesce?" maxlength="1">
+                <input type="text" id="opalescence" th:name="opalescence" name="opalescence" placeholder="Does it opalesce?" maxlength="1">
             </fieldset>
 
             <fieldset>
                 <label>Mineral region</label>
-                <input type="text" id="region" th:name="region" placeholder="Insert region where mineral was found" minlength="3">
+                <input type="text" id="region" th:name="region" name="region" placeholder="Insert region where mineral was found" minlength="3">
             </fieldset>
 
             <fieldset>
                 <input type="submit">
+            </fieldset>
+
+            <fieldset>
+                <button onclick="history.back()">Go Back</button>
             </fieldset>
         </form>
     </section>
