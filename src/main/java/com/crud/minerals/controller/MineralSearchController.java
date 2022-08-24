@@ -3,10 +3,12 @@ package com.crud.minerals.controller;
 import com.crud.minerals.domain.Mineral;
 import com.crud.minerals.domain.MineralDto;
 import com.crud.minerals.mapper.MineralMapper;
-import com.crud.minerals.service.DbService;
+import com.crud.minerals.repository.MineralsRepository;
+import com.crud.minerals.repository.SearchOps;
+import com.crud.minerals.specification.MineralSpecification;
+import com.crud.minerals.specification.SearchCriteria;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,38 +21,53 @@ import java.util.List;
 @CrossOrigin("*")
 public class MineralSearchController {
 
-    private final DbService dbService;
-    private final MineralMapper mineralMapper;
+    private MineralsRepository mineralsRepository;
+    private MineralMapper mineralMapper;
 
     @GetMapping
     public String search() {
         return "mineralSearch";
     }
 
-    @GetMapping(value = "{id}")
-    public ResponseEntity<MineralDto> getMineral(@PathVariable Long id) throws MineralNotFoundException {
-        return ResponseEntity.ok(mineralMapper.mapToMineralDto(dbService.getMineral(id)));
-    }
+    // 2) Attempt using Specification
 
-    @PostMapping()
+    @PostMapping
+    void specification(@RequestBody List<SearchCriteria> searchCriteria, Model model) {
+        MineralSpecification mineralSpecification = new MineralSpecification();
+        searchCriteria.stream()
+                .map(searchCriterion -> new SearchCriteria(searchCriterion.getKey(), (SearchOps) searchCriterion.getValue(), searchCriterion.getOperation()))
+                .forEach(mineralSpecification::add);
+        List<Mineral> minerals = mineralsRepository.findAll(mineralSpecification);
+        model.addAttribute("minerals", minerals);
+    }
+}
+
+   /*
+
+   1) Attempt using @RequestParam
+   ------------------------------
+
+   @PostMapping()
     public String getMineralsByDifferentParameters(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "color", required = false) String color,
-                                                             @RequestParam(name = "shine", required = false) String shine, @RequestParam(name = "fragility", required = false) String fragility,
-                                                             @RequestParam(name = "transparency", required = false) String transparency, @RequestParam(name = "opalescence", required = false)
-                                                                         Character opalescence, @RequestParam(name = "region", required = false) String region, Model model) {
+                                                   @RequestParam(name = "shine", required = false) String shine, @RequestParam(name = "fragility", required = false) String fragility,
+                                                   @RequestParam(name = "transparency", required = false) String transparency, @RequestParam(name = "opalescence", required = false)
+                                                           Character opalescence, @RequestParam(name = "region", required = false) String region, Model model) {
 
         List<Mineral> minerals = dbService.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
         model.addAttribute("minerals", minerals);
         return "mineralSearch";
     }
+    ------------------------------
+    */
 
-    /*@PostMapping()
-    public String getMineralsByDifferentParameters(@RequestBody Mineral mineral, Model model) {
-        List<Mineral> minerals = dbService.retrieveByDifferentParameters(mineral.getName(), mineral.getColor(), mineral.getShine(), mineral.getFragility(),
-                mineral.getTransparency(), mineral.getOpalescence(), mineral.getRegion());
-        mineralMapper.mineralToDtoList(minerals);
-        model.addAttribute("minerals", minerals);
-        return "mineralSearch";
-    }*/
+
+    /*private final DbService dbService;
+    private final MineralMapper mineralMapper;
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<MineralDto> getMineral(@PathVariable Long id) throws MineralNotFoundException {
+        return ResponseEntity.ok(mineralMapper.mapToMineralDto(dbService.getMineral(id)));
+    }
 
     @GetMapping("/name")
     @ResponseBody
@@ -99,5 +116,5 @@ public class MineralSearchController {
     public List<MineralDto> getMineralsByRegion (@RequestParam(name = "region") String region) {
         List<Mineral> minerals = dbService.retrieveMineralsByRegion(region);
         return mineralMapper.mineralToDtoList(minerals);
-    }
-}
+    }*/
+

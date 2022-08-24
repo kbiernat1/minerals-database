@@ -1,19 +1,19 @@
 package com.crud.minerals.repository;
 
 import com.crud.minerals.domain.Mineral;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.NamedNativeQuery;
-import java.lang.annotation.Native;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface MineralsRepository extends CrudRepository<Mineral, Long> {
+public interface MineralsRepository extends JpaRepository<Mineral, Long>, JpaSpecificationExecutor<Mineral> {
 
     @Override
     List<Mineral> findAll();
@@ -21,7 +21,22 @@ public interface MineralsRepository extends CrudRepository<Mineral, Long> {
     @Override
     Optional<Mineral> findById (Long id);
 
-    @Query
+    /*
+
+    1) Attempt using @RequestParam
+    ------------------------------
+
+    @Query(nativeQuery = true)
+    List<Mineral> retrieveByDifferentParameters(@RequestParam(value = "NAME", required = false) String name, @RequestParam(value = "COLOR", required = false) String color,
+                                                @RequestParam(value = "SHINE", required = false) String shine, @RequestParam(value = "FRAGILITY", required = false) String fragility,
+                                                @RequestParam(value = "TRANSPARENCY", required = false) String transparency, @RequestParam(value = "OPALESCENCE", required = false)
+                                                        Character opalescence, @RequestParam(value = "REGION", required = false) String region);
+
+    ------------------------------
+    */
+
+
+    /* @Query
     List<Mineral> retrieveByName(@Param("NAME") String name);
 
     @Query
@@ -40,11 +55,6 @@ public interface MineralsRepository extends CrudRepository<Mineral, Long> {
     List<Mineral> retrieveByOpalescence(@Param("OPALESCENCE") char opalescence);
 
     @Query
-    List<Mineral> retrieveByRegion(@Param("REGION") String region);
+    List<Mineral> retrieveByRegion(@Param("REGION") String region); */
 
-    @Query(nativeQuery = true)
-    List<Mineral> retrieveByDifferentParameters(@RequestParam(value = "NAME", required = false) String name, @RequestParam(value = "COLOR", required = false) String color,
-                                                @RequestParam(value = "SHINE", required = false) String shine, @RequestParam(value = "FRAGILITY", required = false) String fragility,
-                                                @RequestParam(value = "TRANSPARENCY", required = false) String transparency, @RequestParam(value = "OPALESCENCE", required = false)
-                                                        Character opalescence, @RequestParam(value = "REGION", required = false) String region);
 }
