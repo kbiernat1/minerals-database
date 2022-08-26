@@ -38,7 +38,8 @@ public class AdminController {
         return ResponseEntity.ok(mineralMapper.mapToMineralDto(dbService.getMineral(id)));
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/minerals/{id}")
+    @ResponseBody
     public void deleteMineral(@PathVariable Long id) throws MineralNotFoundException {
         if (dbService.getMineral(id) != null) {
             dbService.deleteMineral(id);

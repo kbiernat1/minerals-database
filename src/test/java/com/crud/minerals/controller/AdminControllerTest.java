@@ -179,7 +179,7 @@ public class AdminControllerTest {
         //then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/adminPanel/minerals/1").with(csrf())
+                        .delete("/adminPanel/minerals/1").with(csrf())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }

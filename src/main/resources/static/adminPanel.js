@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var apiRoot = 'http://localhost:8080/home';
+  var apiRoot = 'http://localhost:8080/adminPanel/minerals';
   var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   var mineralsContainer = $('[data-minerals-container]');
 
@@ -12,8 +12,8 @@ $(document).ready(function() {
 
     element.attr('data-mineral-id', data.id);
 
-    element.find('[data-mineral-name-section] [data-mineral-name-paragraph]').text(data.title);
-    element.find('[data-mineral-name-section] [data-mineral-name-input]').val(data.title);
+    element.find('[data-mineral-name-section] [data-mineral-name-paragraph]').text(data.name);
+    element.find('[data-mineral-name-section] [data-mineral-name-input]').val(data.name);
 
     element.find('[data-mineral-color-section] [data-mineral-color-paragraph]').text(data.color);
     element.find('[data-mineral-color-section] [data-mineral-color-input]').val(data.color);
@@ -53,7 +53,7 @@ $(document).ready(function() {
   }
 
   function handleMineralUpdateRequest() {
-    var parentEl = $(this).parent().parent(); //sprawdzić, czy nie trzeba będzie wpisać parent() tyle razy ile zmiennych
+    var parentEl = $(this).parent().parent();
     var mineralId = parentEl.attr('data-mineral-id');
     var mineralName = parentEl.find('[data-mineral-name-input]').val();
     var mineralColor = parentEl.find('[data-mineral-color-input]').val();
