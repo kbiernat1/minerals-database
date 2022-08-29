@@ -29,46 +29,8 @@ public class DbService {
         repository.deleteById(id);
     }
 
-
-
-    /*
-    1) Attempt using @RequestParam
-    ------------------------------
-
     public List<Mineral> retrieveByDifferentParameters(String name, String color, String shine, String fragility, String transparency,
                                                        Character opalescence, String region) {
         return repository.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
     }
-    ------------------------------
-    */
-
-
-
-    /*public List<Mineral> retrieveMineralsByName(String name) {
-        return repository.retrieveByName(name);
-    }
-
-    public List<Mineral> retrieveMineralsByColor(String color) {
-        return repository.retrieveByColor(color);
-    }
-
-    public List<Mineral> retrieveMineralsByShine(String shine) {
-        return repository.retrieveByShine(shine);
-    }
-
-    public List<Mineral> retrieveMineralsByFragility(String fragility) {
-        return repository.retrieveByFragility(fragility);
-    }
-
-    public List<Mineral> retrieveMineralsByTransparency(String transparency) {
-        return repository.retrieveByTransparency(transparency);
-    }
-
-    public List<Mineral> retrieveMineralsByOpalescence(char opalescence) {
-        return repository.retrieveByOpalescence(opalescence);
-    }
-
-    public List<Mineral> retrieveMineralsByRegion(String region) {
-        return repository.retrieveByRegion(region);
-    }*/
 }

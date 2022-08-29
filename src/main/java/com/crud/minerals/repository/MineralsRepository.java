@@ -21,40 +21,9 @@ public interface MineralsRepository extends JpaRepository<Mineral, Long>, JpaSpe
     @Override
     Optional<Mineral> findById (Long id);
 
-    /*
-
-    1) Attempt using @RequestParam
-    ------------------------------
-
     @Query(nativeQuery = true)
     List<Mineral> retrieveByDifferentParameters(@RequestParam(value = "NAME", required = false) String name, @RequestParam(value = "COLOR", required = false) String color,
                                                 @RequestParam(value = "SHINE", required = false) String shine, @RequestParam(value = "FRAGILITY", required = false) String fragility,
                                                 @RequestParam(value = "TRANSPARENCY", required = false) String transparency, @RequestParam(value = "OPALESCENCE", required = false)
                                                         Character opalescence, @RequestParam(value = "REGION", required = false) String region);
-
-    ------------------------------
-    */
-
-
-    /* @Query
-    List<Mineral> retrieveByName(@Param("NAME") String name);
-
-    @Query
-    List<Mineral> retrieveByColor(@Param("COLOR") String color);
-
-    @Query
-    List<Mineral> retrieveByShine(@Param("SHINE") String shine);
-
-    @Query
-    List<Mineral> retrieveByFragility(@Param("FRAGILITY") String fragility);
-
-    @Query
-    List<Mineral> retrieveByTransparency(@Param("TRANSPARENCY") String transparency);
-
-    @Query
-    List<Mineral> retrieveByOpalescence(@Param("OPALESCENCE") char opalescence);
-
-    @Query
-    List<Mineral> retrieveByRegion(@Param("REGION") String region); */
-
 }

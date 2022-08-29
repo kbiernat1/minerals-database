@@ -5,7 +5,6 @@ import com.crud.minerals.domain.MineralDto;
 import com.crud.minerals.mapper.MineralMapper;
 import com.crud.minerals.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

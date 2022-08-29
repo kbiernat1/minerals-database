@@ -6,37 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NamedQueries({
-        @NamedQuery(
-                name = "Mineral.retrieveByName",
-                query = "FROM Mineral WHERE name LIKE CONCAT('%', :NAME, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByColor",
-                query = "FROM Mineral WHERE color LIKE CONCAT('%', :COLOR, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByShine",
-                query = "FROM Mineral WHERE shine LIKE CONCAT('%', :SHINE, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByTransparency",
-                query = "FROM Mineral WHERE transparency LIKE CONCAT('%', :TRANSPARENCY, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByFragility",
-                query = "FROM Mineral WHERE fragility LIKE CONCAT('%', :FRAGILITY, '%')"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByOpalescence",
-                query = "FROM Mineral WHERE opalescence = :OPALESCENCE"
-        ),
-        @NamedQuery(
-                name = "Mineral.retrieveByRegion",
-                query = "FROM Mineral WHERE region LIKE CONCAT('%', :REGION, '%')"
-        )
-})
-
 @NamedNativeQuery(
         name = "Mineral.retrieveByDifferentParameters",
         query = "SELECT * FROM minerals WHERE IFNULL(:name, name) = IFNULL(name, name) AND " +
