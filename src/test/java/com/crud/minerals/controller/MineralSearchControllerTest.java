@@ -1,46 +1,43 @@
 package com.crud.minerals.controller;
 
 import com.crud.minerals.domain.Mineral;
+import com.crud.minerals.mapper.MineralMapper;
 import com.crud.minerals.repository.MineralsRepository;
 import com.crud.minerals.service.DbService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-@SpringBootTest
+@WebMvcTest(MineralSearchController.class)
 public class MineralSearchControllerTest {
 
+    @MockBean
+    private MineralsRepository mineralsRepository;
+
+    @MockBean
+    private DbService dbService;
+
+    @MockBean
+    private MineralMapper mineralMapper;
+
     @Autowired
-    MineralsRepository mineralsRepository;
-    @Autowired
-    DbService dbService;
+    private MockMvc mockMvc;
 
     @Test
-    void retrieveMineralByColorTest() {
+    void getSelectedMineral() throws Exception {
         //given
-        mineralsRepository.deleteAll();
-        Mineral mineral1 = new Mineral(2L, "testname1", "green", "high", "high", "medium", 'N', "somewhere");
-        Mineral mineral2 = new Mineral(3L, "testname2", "green", "medium", "low", "low", 'Y', "somewhere");
-        Mineral mineral3 = new Mineral(4L, "testname3", "blue", "low", "medium", "low", 'N', "somewhere");
+        Mineral mineral1 = new Mineral(1L, "labradorite", "blue", "medium", "none", "medium", 'Y', "Lower Silesia");
 
         dbService.saveMineral(mineral1);
-        dbService.saveMineral(mineral2);
-        dbService.saveMineral(mineral3);
-
         //when
-        List<Mineral> mineralsByColorGreen = dbService.retrieveMineralsByColor("green");
 
-        //then
-        Assertions.assertEquals(2, mineralsByColorGreen.size());
-    }
+        List<Mineral> list2 = dbService.retrieveByDifferentParameters("labradorite", "blue", "medium", "none", "medium", 'Y', "Lower Silesia");
 
-    @Test
-    void getMineralsByDifferentParametersTest() {
-        List<Mineral> minerals = dbService.retrieveByDifferentParameters(null, "green", "high", "medium", null, null, null);
-
-        Assertions.assertEquals(3, minerals.size());
+        Assertions.assertEquals(1, list2.size());
     }
 }

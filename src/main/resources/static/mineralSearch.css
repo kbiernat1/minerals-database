@@ -20,6 +20,11 @@ body {
     border-radius: 10px;
 }
 
+.button {
+    clear: left;
+    text-align: center;
+}
+
 .table {
     display: table;
     width: 100%;

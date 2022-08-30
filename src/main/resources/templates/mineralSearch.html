@@ -12,7 +12,7 @@
     <div id="searchFields" class="container">
         <section>
             <h2>Search for a mineral</h2>
-            <form name="searchForm" th:action="@{'/mineralSearch'}" method="POST">
+            <form name="searchForm" th:action="@{'/mineralSearch'}" method="GET">
                 <fieldset>
                     <label>Mineral name</label>
                     <input type="text" id="name" name="name" placeholder="Insert a mineral name"
@@ -73,11 +73,11 @@
                            placeholder="Insert region where mineral was found" minlength="3">
                 </fieldset>
 
-                <fieldset class="submitButton">
-                    <input type="submit">
+                <fieldset class="button">
+                    <input type="submit" value="Search" style="height:30px; width:70px; font-weight: bold">
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="button">
                     <input type="button" value="Go back" onclick="parent.location='index.html'" style="height:30px; width:70px">
                 </fieldset>
             </form>
@@ -99,6 +99,7 @@
 </main>
 
 <div class="template" data-datatable-row-template>
+
     <form class="datatable__row" data-mineral-id="0">
         <fieldset class="datatable__row-section datatable__row-section--input-section" data-mineral-name-section>
             <textarea name="name" placeholder="Insert a new mineral name" data-mineral-name-input required minlength="3"></textarea>
