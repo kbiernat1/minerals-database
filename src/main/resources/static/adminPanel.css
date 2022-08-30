@@ -23,6 +23,11 @@ body {
 *::after {
    box-sizing: inherit; }
 
+.logout {
+   clear: left;
+   text-align: center;
+}
+
 .crud {
    margin-bottom: 20px; }
 

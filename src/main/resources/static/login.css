@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    font-family: sans-serif;
+}
+
+.login {
+    width: 280px;
+    height: 250px;
+    background: white;
+    color: aliceblue;
+    top: 35%;
+    left: 42%;
+    position: absolute;
+    box-sizing: content-box;
+    padding: 30px 30px;
+}
+
+.login p {
+    margin-bottom: 10px;
+    padding: 0;
+    font-weight: bold;
+    color: black;
+}
+
+.login input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login input [type="text"], input [type="password"] {
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: black;
+    font-size: 16px;
+}
+
+.buttons {
+    cursor: pointer;
+    text-align: center;
+}
