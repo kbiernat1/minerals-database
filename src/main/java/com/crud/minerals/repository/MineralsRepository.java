@@ -4,8 +4,6 @@ import com.crud.minerals.domain.Mineral;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,4 +24,13 @@ public interface MineralsRepository extends JpaRepository<Mineral, Long>, JpaSpe
                                                 @RequestParam(value = "SHINE", required = false) String shine, @RequestParam(value = "FRAGILITY", required = false) String fragility,
                                                 @RequestParam(value = "TRANSPARENCY", required = false) String transparency, @RequestParam(value = "OPALESCENCE", required = false)
                                                         Character opalescence, @RequestParam(value = "REGION", required = false) String region);
+
+    @Query(nativeQuery = true)
+    List<String> retrieveDistinctByName();
+
+    @Query(nativeQuery = true)
+    List<String> retrieveDistinctByColor();
+
+    @Query(nativeQuery = true)
+    List<String> retrieveDistinctByRegion();
 }

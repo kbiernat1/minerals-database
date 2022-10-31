@@ -1,9 +1,11 @@
 package com.crud.minerals.service;
 
+import com.crud.minerals.configuration.MineralSpecification;
 import com.crud.minerals.controller.MineralNotFoundException;
 import com.crud.minerals.domain.Mineral;
 import com.crud.minerals.repository.MineralsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DbService {
     private final MineralsRepository repository;
+    MineralSpecification mineralSpecification = new MineralSpecification();
 
     public List<Mineral> getAllMinerals() {
         return repository.findAll();
@@ -31,6 +34,19 @@ public class DbService {
 
     public List<Mineral> retrieveByDifferentParameters(String name, String color, String shine, String fragility, String transparency,
                                                        Character opalescence, String region) {
-        return repository.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
+        Specification<Mineral> filteredSpecification = mineralSpecification.findByFilters(name, color, shine, transparency, fragility, opalescence, region);
+        return repository.findAll(filteredSpecification);
+    }
+
+    public List<String> retrieveAllMineralsDistinctByName() {
+        return repository.retrieveDistinctByName();
+    }
+
+    public List<String> retrieveAllMineralsDistinctByColor() {
+        return repository.retrieveDistinctByColor();
+    }
+
+    public List<String> retrieveAllMineralsDistinctByRegion() {
+        return repository.retrieveDistinctByRegion();
     }
 }

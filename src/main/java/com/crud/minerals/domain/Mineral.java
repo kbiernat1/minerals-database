@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NamedNativeQuery(
+@NamedNativeQueries({
+        @NamedNativeQuery(
         name = "Mineral.retrieveByDifferentParameters",
         query = "SELECT * FROM minerals WHERE IFNULL(:name, name) = IFNULL(name, name) AND " +
                 "IFNULL(:color, color) = IFNULL(color, color) AND " +
@@ -16,7 +17,20 @@ import javax.persistence.*;
                 "IFNULL(:opalescence, opalescence) = IFNULL(opalescence, opalescence) AND " +
                 "IFNULL(:region, region) = IFNULL(region, region);",
         resultClass = Mineral.class
-)
+        ),
+        @NamedNativeQuery(
+                name = "Mineral.retrieveDistinctByName",
+                query = "SELECT DISTINCT name FROM minerals;"
+        ),
+        @NamedNativeQuery(
+                name = "Mineral.retrieveDistinctByColor",
+                query = "SELECT DISTINCT color FROM minerals;"
+        ),
+        @NamedNativeQuery(
+                name = "Mineral.retrieveDistinctByRegion",
+                query = "SELECT DISTINCT region FROM minerals;"
+        )
+})
 
 @Getter
 @AllArgsConstructor
