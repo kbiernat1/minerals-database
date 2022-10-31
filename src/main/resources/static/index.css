@@ -1,0 +1,51 @@
+style {
+
+}
+
+#header {
+    text-align: center;
+    color: #D9B08C;
+    font-family: "Candara Light", serif;
+    font-size: 85px;
+    margin: 20px;
+}
+
+p {
+    text-align: center;
+    font-family: "Candara Light", serif;
+    color: #D9B08C;
+    font-size: 40px;
+    margin: 0 0 20px;
+}
+
+#container {
+    text-align: center;
+    margin: 10% auto;
+}
+
+input {
+    border-radius: 4px;
+    background: linear-gradient(to right, #116466, #357D7F) !important;
+    font-family: "Candara Light", serif;
+    border: none;
+    color: #D9B08C;
+    text-align: center;
+    font-size: 22px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.4s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.flex-parent {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+#button1 {
+    margin-right: 10px;
+}

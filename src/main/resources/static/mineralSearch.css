@@ -8,75 +8,95 @@ html {
 }
 
 body {
-    background-color: white;
+    background-color: #2C3531;
 }
 
-.container {
-    max-width: 400px;
-    width: 80%;
-    margin: 40px auto;
-    background-color: aliceblue;
-    padding: 20px;
+.grid_container {
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+    grid-gap: 40px;
+}
+
+fieldset {
+    position: relative;
+    border-color: transparent;
+}
+
+label {
+    position: absolute;
+    text-align: right;
+    width: 120px;
+    left: 10px;
+    top: 10px;
+}
+
+.search_field {
+    margin-left: 140px;
+    background-color: #D1E8E2;
+    font-family: "Candara Light", serif;
+    width: 100px;
+}
+
+.search_container_header {
+    font-weight: bold;
+    font-family: "Candara Light", serif;
+    color: #D9B08C;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+}
+
+.search_container {
+    margin: 20% auto;
+    font-family: "Candara Light", serif;
+    color: #D9B08C;
+    background: linear-gradient(to right, #116466, #357D7F) !important;
+    padding: 10px;
     border-radius: 10px;
 }
 
-.button {
+.button_fieldset {
     clear: left;
     text-align: center;
 }
 
-.table {
-    display: table;
+.button {
+    border-radius: 10px;
+    font-family: "Candara Light", serif;
+    background: none;
+    border-color: #116466;
+    color: #D9B08C;
+    width: 80px;
+    font-size: 20px;
+    clear: left;
+    text-align: center;
+    padding: 5px;
+}
+
+.database_container {
+    margin: 5% 40px 10% auto;
+}
+
+table {
+    border-collapse: initial;
+    color: #D9B08C;
     width: 100%;
     table-layout: fixed;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+th, td {
+    border: 1px solid #116466;
+    font-family: "Candara Light", serif;
+    padding: 8px;
+}
+
+td {
+    background-color: #357D7F;
+}
+
+.headers {
+    background: linear-gradient(to bottom, #116466, #357D7F) !important;
     font-weight: bold;
-}
-
-.table-cell {
-    display: table-cell;
-    width: 100px;
-}
-
-.datatable__row {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    border: 1px solid #ccc;
-    border-bottom: none;
-    margin: 0;
-}
-
-.datatable__row input,
-.datatable__row textarea {
-    display: none;
-}
-
-.datatable__field-value {
-    margin-bottom: 0;
-    display: table-cell;
-    width: 100px;
-    font-size: 14px;
-    text-align: left;
-}
-
-.datatable__row-section {
-    border: none;
-    margin: 0;
-    padding: 10px;
-    flex-grow: 1;
-}
-
-.datatable__minerals-container:empty {
-    position: relative;
-}
-
-.datatable__minerals-container:empty::after {
-    content: 'Currently, there are no minerals in database.';
-}
-
-.template {
-    display: none;
 }

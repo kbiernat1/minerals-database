@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body {
+            background-image: url("background.jpg");
+        }
+    </style>
     <title>Minerals home page</title>
+    <link rel="stylesheet" type="text/css" href="/index.css"/>
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
-<p>Click <a href="/adminPanel">here</a> to go to a admin panel.</p><br>
-<p>Click <a href="/mineralSearch">here</a> to go to a search panel.</p>
+<div id="container">
+    <p id="header">MINERAL SEARCH ENGINE 1.0</p>
+    <p>select your role</p>
+    <div class="flex-parent jc-center">
+        <form action="/adminPanel">
+            <input id="button1" type="submit" value="ADMIN"/>
+        </form>
+        <form action="/mineralSearch">
+            <input id="button2" type="submit" value="USER"/>
+        </form>
+    </div>
+</div>
 </body>
 </html>
