@@ -3,19 +3,19 @@
 <head>
     <style>
         body {
-            background-image: url("background.jpg");
+            background-image: url("/pictures/background.jpg");
         }
     </style>
     <title>Minerals Search Engine</title>
-    <link rel="stylesheet" type="text/css" href="/mineralSearch.css"/>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/css/mineral_search.css"/>
+    <link rel="icon" type="image/png" href="/pictures/favicon.png">
 </head>
 <body>
 <main>
     <div class="grid_container">
         <div class="search_container">
             <div class="search_container_header">CHOOSE FEATURE</div>
-            <form class="search_form" th:action="@{'/mineralSearch'}" method="POST">
+            <form class="search_form" th:action="@{'/mineral_search'}" method="POST">
                 <fieldset>
                     <label>NAME</label>
                     <select class="search_field" name="name">

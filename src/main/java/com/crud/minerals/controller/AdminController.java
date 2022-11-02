@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminPanel")
+@RequestMapping("/admin_panel")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class AdminController {
@@ -23,7 +23,7 @@ public class AdminController {
 
     @GetMapping
     public String welcome() {
-        return "adminPanel";
+        return "admin_panel";
     }
 
     @GetMapping("/minerals")

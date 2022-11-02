@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="login.css">
+<link rel="stylesheet" type="text/css" href="/css/admin_login.css">
 <body>
 <style>
     body {
-        background-image: url("background.jpg");
+        background-image: url("/pictures/background.jpg");
     }
 </style>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
 <div id="login">
-    <form id="login_form" th:action="@{/login}" method="post">
+    <form id="login_form" th:action="@{/admin_login}" method="post">
         <p>Username</p>
         <input class="input_field" type="text" name="username"/>
         <p>Password</p>

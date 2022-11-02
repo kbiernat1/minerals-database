@@ -22,8 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/")
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**")
-                .antMatchers("/mineralSearch")
-                .antMatchers("/mineralSearch/**");
+                .antMatchers("/mineral_search")
+                .antMatchers("/mineral_search/**");
     }
 
 
@@ -32,15 +32,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable().cors().and()
                 .authorizeRequests()
-                .antMatchers("/adminPanel").hasRole("ADMIN")
+                .antMatchers("/admin_panel").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/adminPanel")
+                .loginPage("/admin_login")
+                .defaultSuccessUrl("/admin_panel")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/admin_login").permitAll();
     }
 
     @Bean

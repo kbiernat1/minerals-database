@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mineralSearch")
+@RequestMapping("/mineral_search")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class MineralSearchController {
@@ -19,7 +19,7 @@ public class MineralSearchController {
 
     @GetMapping
     public String search() {
-        return "mineralSearch";
+        return "mineral_search";
     }
 
     @PostMapping()
@@ -30,7 +30,7 @@ public class MineralSearchController {
 
         List<Mineral> minerals = dbService.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
         model.addAttribute("minerals", minerals);
-        return "mineralSearch";
+        return "mineral_search";
     }
 
     @ModelAttribute("names")

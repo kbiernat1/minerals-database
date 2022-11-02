@@ -3,25 +3,27 @@
 <head>
     <style>
         body {
-            background-image: url("background.jpg");
+            background-image: url("pictures/background.jpg");
         }
     </style>
     <title>Minerals home page</title>
-    <link rel="stylesheet" type="text/css" href="/index.css"/>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <link rel="icon" type="image/png" href="/pictures/favicon.png">
 </head>
 <body>
 <div id="container">
     <p id="header">MINERAL SEARCH ENGINE 1.0</p>
     <p>select your role</p>
     <div class="flex-parent jc-center">
-        <form action="/adminPanel">
+        <form action="/admin_panel">
             <input id="button1" type="submit" value="ADMIN"/>
         </form>
-        <form action="/mineralSearch">
+        <form action="/mineral_search">
             <input id="button2" type="submit" value="USER"/>
         </form>
     </div>
+    <a href="/login_u">navigate to login</a>
+    <a href="/register">navigate to register</a>
 </div>
 </body>
 </html>

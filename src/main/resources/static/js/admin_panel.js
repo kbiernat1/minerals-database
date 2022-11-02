@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var apiRoot = 'http://localhost:8080/adminPanel/minerals';
+  var apiRoot = 'http://localhost:8080/admin_panel/minerals';
   var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   var mineralsContainer = $('[data-minerals-container]');
 
