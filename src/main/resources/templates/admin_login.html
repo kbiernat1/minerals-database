@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="/css/admin_login.css">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
 <body>
-<style>
-    body {
-        background-image: url("/pictures/background.jpg");
-    }
-</style>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<div id="login">
+<div class="form">
     <form id="login_form" th:action="@{/admin_login}" method="post">
-        <p>Username</p>
-        <input class="input_field" type="text" name="username"/>
-        <p>Password</p>
-        <input class="input_field" type="password" name="password"/>
+        <h2>Sign in</h2>
+        <div class="input-box">
+            <input class="input_field" type="text" name="username" placeholder="login"/>
+        </div>
+        <div class="input-box">
+            <input class="input_field" type="password" name="password" placeholder="password"/>
+        </div>
         <div th:if="${param.error}">
             invalid username or password
         </div>
-        <div>
-            <input class="buttons" type="submit" value="sign in"
-                   style="height:30px; width:70px; font-weight: bold; align-self: center">
-            <input class="buttons" type="button" value="go back" onclick="parent.location='index.html'"
-                   style="height:30px; width:70px">
+        <div class="input-box">
+            <input class="buttons" type="submit" value="sign in">
         </div>
     </form>
 </div>
