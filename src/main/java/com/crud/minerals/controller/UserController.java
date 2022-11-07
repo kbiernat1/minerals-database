@@ -40,7 +40,7 @@ public class UserController {
         User authenticatedUser = userService.authenticate(user.getLogin(), user.getPassword());
         if (authenticatedUser != null) {
             model.addAttribute("userLogin", authenticatedUser.getLogin());
-            return "mineral_search";
+            return "redirect:/mineral_search";
         } else {
             return "error";
         }

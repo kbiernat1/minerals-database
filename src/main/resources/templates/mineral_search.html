@@ -12,6 +12,11 @@
 </head>
 <body>
 <main>
+    <div id="logout">
+        <form th:action="@{/logout}" method="post">
+            <input id="logout_button" type="submit" value="sign out">
+        </form>
+    </div>
     <div class="grid_container">
         <div class="search_container">
             <div class="search_container_header">CHOOSE FEATURE</div>
