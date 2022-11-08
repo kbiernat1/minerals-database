@@ -19,9 +19,7 @@ public class MineralSearchController {
 
     @GetMapping
     public String search(Model model) {
-        model.addAttribute("names", dbService.retrieveAllMineralsDistinctByName());
-        model.addAttribute("colors", dbService.retrieveAllMineralsDistinctByColor());
-        model.addAttribute("regions", dbService.retrieveAllMineralsDistinctByRegion());
+        getSearchFields(model);
         List<Mineral> minerals = dbService.getAllMinerals();
         model.addAttribute("minerals", minerals);
         return "mineral_search";
@@ -32,9 +30,15 @@ public class MineralSearchController {
                                                    @RequestParam(name = "shine", required = false) String shine, @RequestParam(name = "fragility", required = false) String fragility,
                                                    @RequestParam(name = "transparency", required = false) String transparency, @RequestParam(name = "opalescence", required = false)
                                                               Character opalescence, @RequestParam(name = "region", required = false) String region, Model model) {
-
+        getSearchFields(model);
         List<Mineral> minerals = dbService.retrieveByDifferentParameters(name, color, shine, fragility, transparency, opalescence, region);
         model.addAttribute("minerals", minerals);
-        return "redirect:/mineral_search";
+        return "mineral_search";
+    }
+
+    public void getSearchFields(Model model) {
+        model.addAttribute("names", dbService.retrieveAllMineralsDistinctByName());
+        model.addAttribute("colors", dbService.retrieveAllMineralsDistinctByColor());
+        model.addAttribute("regions", dbService.retrieveAllMineralsDistinctByRegion());
     }
 }
